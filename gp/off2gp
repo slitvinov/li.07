@@ -28,12 +28,23 @@ function read () {
     vert()
     face()
 }
+function tri(a, b, c) {
+    if (!NextTri) NextTri = 1
+    else           printf "\n\n"
+    xa = x[a]; ya = y[a]; za = z[a]
+    xb = x[b]; yb = y[b]; zb = z[b]
+    xc = x[c]; yc = y[c]; zc = z[c]
+    print xa, ya, za
+    print xb, yb, zb
+    printf "\n"
+    print xc, yc, zc
+    print xc, yc, zc
 
-function edge0(i, j,   dx, dy, dz) {
-    dx = x[j] - x[i]
-    dy = y[j] - y[i]
-    dz = z[j] - z[i]
-    print x[i], y[i], z[i], dx, dy, dz
+}
+function edge0(i, j,   xi, yi, zi, xj, yj, zj) {
+    xi = x[i]; yi = y[i]; zi = z[i]
+    xj = x[j]; yj = y[j]; zj = z[j]
+    print xi, yi, zi, xj - xi, yj - yi, zj - zi
 }
 function edge(i, j) {
     if ((i, j) in E) return
@@ -41,16 +52,19 @@ function edge(i, j) {
     edge0(i, j)
     E[i, j]
 }
+function vector(ia, ib, ic) {
+    edge(ia, ib)
+    edge(ib, ic)
+    edge(ic, ia)
+}
+
 function write(   i) {
     for (i = 0; i < nf; i++) {
 	ia = a[i]; ib = b[i]; ic = c[i]
-	
-	edge(ia, ib)
-	edge(ib, ic)
-	edge(ic, ia)
+	if (Vector) vector(ia, ib, ic)
+	else        tri(ia, ib, ic)
     }
 }
-
 function ini() {
     # indices
     X = 1; Y = 2; Z = 3
