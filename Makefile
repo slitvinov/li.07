@@ -11,4 +11,5 @@ $M.pdf: $M.tex $t $i
 
 .PHONY: clean
 clean:
-	-rm  $M.aux $M.log $M.nav $M.out $M.pdf $M.snm $M.toc
+	@echo clean
+	@rm  $M.aux $M.log $M.nav $M.out $M.pdf $M.snm $M.toc
