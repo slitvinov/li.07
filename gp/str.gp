@@ -1,5 +1,4 @@
 o = "str"
-
 set term pdf mono
 set output o . ".pdf"
 print "write: " . o . ".pdf"
