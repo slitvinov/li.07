@@ -2,7 +2,7 @@ M=main
 # arguments
 a=-interaction=nonstopmode
 # tex
-t=t/def.tex  t/notheme.tex
+t=t/def.tex  t/notheme.tex t/str.tex
 i=
 
 $M.pdf: $M.tex $t $i
