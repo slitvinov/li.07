@@ -1,0 +1,95 @@
+<scene version="0.5.0">
+
+    <!-- INTEGRATOR -->
+    <integrator type="bdpt">
+        <integer name="maxDepth" value="-1"/>
+        <integer name="rrDepth" value="5"/>
+    </integrator>
+
+
+    <!-- CAMERA VIEW (SENSOR) -->
+    <sensor type="perspective">
+		<float name="focusDistance" value="4645.39"/>
+		<float name="fov" value="85"/>
+		<string name="fovAxis" value="x"/>
+        <transform name="toWorld">
+			<lookat target="300, 150, 40" origin="-110, 50, 120" up="0.0588726, 0.0097314, 0.998218"/>
+        </transform>
+        <float name="fov" value="35"/>
+        <string name="fovAxis" value="x"/>
+        <float name="nearClip" value="0.001"/>
+
+        <sampler type="halton">
+            <integer name="sampleCount" value="256"/>
+        </sampler>
+        <film type="hdrfilm">
+            <boolean name="banner" value="false"/>
+            <integer name="height" value="400"/>
+            <integer name="width" value="768"/>
+
+            <rfilter type="lanczos"/>
+        </film>
+    </sensor>
+
+
+    <!-- RBCS -->
+    <shape type="ply">
+         <string name="filename" value="00034.ply"/>
+        <bsdf type="roughplastic">
+            <string name="distribution" value="beckmann"/>
+            <float name="intIOR" value="1.02"/>
+            <float name="extIOR" value="1.01"/>
+            <rgb name="specularReflectance" value="1"/>
+            <rgb name="diffuseReflectance" value="0.55 0.0 0.015"/>
+            <float name="alpha" value=".9"/>
+            <boolean name="nonlinear" value="true"/>
+        </bsdf>
+    </shape>
+    <!--
+    -->
+
+
+    <!-- WALLS -->
+    <shape type="ply">
+        <string name="filename" value="wall_device.ply"/>
+        <transform name="toWorld">
+            <translate x="0" y="0" z="0"/>
+        </transform>
+        <bsdf type="roughplastic">
+        </bsdf>
+    </shape>
+
+
+    <!-- SCENE LIGHTS -->
+    <emitter type="constant">
+        <spectrum name="radiance" value="1.3"/>
+    </emitter>
+
+    <shape type="sphere">
+        <transform name="toWorld">
+            <translate x="206" y="0" z="182"/>
+        </transform>
+        <emitter type="area">
+            <spectrum name="radiance" value="2000"/>
+        </emitter>
+    </shape>
+
+    <shape type="sphere">
+        <transform name="toWorld">
+            <translate x="10" y="-100" z="10"/>
+        </transform>
+        <emitter type="area">
+            <spectrum name="radiance" value="2000"/>
+        </emitter>
+    </shape>
+
+    <shape type="sphere">
+        <transform name="toWorld">
+            <translate x="206" y="-100" z="10"/>
+        </transform>
+        <emitter type="area">
+            <spectrum name="radiance" value="3000"/>
+        </emitter>
+    </shape>
+
+</scene>
